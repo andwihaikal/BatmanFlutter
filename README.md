@@ -3,7 +3,7 @@
 
 Repository ini untuk mengumpulkan tugas Elearning APK Release
 
-![](ssapkerelease.png)
+![](ssapkrelease.png)
 
 
 ## Getting Started
