@@ -1,6 +1,7 @@
 # batmanflutter
 
-A new Flutter project.
+
+Repository ini untuk mengumpulkan tugas Elearning APK Release
 
 ## Getting Started
 
