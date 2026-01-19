@@ -5,6 +5,19 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+
+import java.util.Properties
+import java.io.FileInputStream
+
+val keyStoreProperties = Properties()
+val keyStoreFile = project.file("key.properties")
+
+if (keyStoreFile.exists()) {
+    FileInputStream(keyStoreFile).use { fis ->
+        keyStoreProperties.load(fis)
+    }
+}
+
 android {
     namespace = "com.example.batmanflutter"
     compileSdk = flutter.compileSdkVersion
@@ -29,7 +42,14 @@ android {
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
-
+    signingConfigs {
+        create("release"){
+            keyAlias = keyStoreProperties.getProperty("keyAlias")
+            keyPassword = keyStoreProperties.getProperty("keyPassword")
+            storeFile = keyStoreProperties.getProperty("storeFile")?.let { file(it) }
+            storePassword = keyStoreProperties.getProperty("storePassword")
+        }
+    }
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
